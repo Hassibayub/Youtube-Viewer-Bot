@@ -26,6 +26,7 @@ import json
 import logging
 import re
 import textwrap
+import traceback
 from concurrent.futures import ThreadPoolExecutor, wait
 from time import gmtime, sleep, strftime, time
 
@@ -772,6 +773,7 @@ def main_viewer(proxy_type, proxy, position):
             create_html(
                 {
                     "#f14c4c": f"Worker {position} | Line : {e.__traceback__.tb_lineno} | {type(e).__name__} | {e.args[0] if e.args else ''}"})
+            traceback.print_exc()
 
     except RequestException:
         print(timestamp() + bcolors.OKBLUE + f"Worker {position} | " +
