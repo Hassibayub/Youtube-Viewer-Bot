@@ -26,7 +26,7 @@ import shutil
 import subprocess
 import sys
 
-import undetected_chromedriver._compat as uc
+import undetected_chromedriver as uc
 
 from .colors import *
 
@@ -109,7 +109,7 @@ def download_driver(patched_drivers):
 
     uc.TARGET_VERSION = major_version
 
-    uc.install()
+    # uc.install()  # This is old stuff now
 
     return osname, exe_name
 

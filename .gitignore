@@ -8,3 +8,6 @@ config.json
 chromedriver.exe
 version.txt
 *.log
+.idea/
+.venv
+venv_windows/

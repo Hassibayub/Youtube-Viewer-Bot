@@ -42,6 +42,7 @@ def config_api(config):
         enabled = True
         port = input(bcolors.OKCYAN +
                      '\nEnter a free port (default=5000) : ' + bcolors.ENDC)
+        port = port or 5000
         try:
             port = int(port)
         except Exception:

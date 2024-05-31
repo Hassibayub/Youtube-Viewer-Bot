@@ -50,24 +50,11 @@ log.disabled = True
 SCRIPT_VERSION = '1.8.0'
 
 print(bcolors.OKGREEN + """
-
-Yb  dP  dP"Yb  88   88 888888 88   88 88""Yb 888888
- YbdP  dP   Yb 88   88   88   88   88 88__dP 88__
-  8P   Yb   dP Y8   8P   88   Y8   8P 88""Yb 88""
- dP     YbodP  `YbodP'   88   `YbodP' 88oodP 888888
-
-                        Yb    dP 88 888888 Yb        dP 888888 88""Yb
-                         Yb  dP  88 88__    Yb  db  dP  88__   88__dP
-                          YbdP   88 88""     YbdPYbdP   88""   88"Yb
-                           YP    88 888888    YP  YP    888888 88  Yb
-""" + bcolors.ENDC)
-
-print(bcolors.OKCYAN + """
-           [ GitHub : https://github.com/MShawon/YouTube-Viewer ]
+YOUTUBE VIEWER
 """ + bcolors.ENDC)
 
 print(bcolors.WARNING + f"""
-+{'-'*26} Version: {SCRIPT_VERSION} {'-'*26}+
++{'-' * 26} Version: {SCRIPT_VERSION} {'-' * 26}+
 """ + bcolors.ENDC)
 
 proxy = None
@@ -95,7 +82,7 @@ temp_folders = []
 console = []
 
 threads = 0
-views = 100
+views = 1
 
 fake = Faker()
 cwd = os.getcwd()
@@ -114,10 +101,15 @@ width = 0
 viewports = ['2560,1440', '1920,1080', '1440,900',
              '1536,864', '1366,768', '1280,1024', '1024,768']
 
-referers = ['https://search.yahoo.com/', 'https://duckduckgo.com/', 'https://www.google.com/',
-            'https://www.bing.com/', 'https://t.co/', '']
+referers = [
+    'https://search.yahoo.com/',
+    'https://duckduckgo.com/',
+    # 'https://www.google.com/',
+    'https://www.bing.com/',
+    'https://t.co/',
+    '']
 
-referers = choices(referers, k=len(referers)*3)
+referers = choices(referers, k=len(referers) * 3)
 
 website.console = console
 website.database = DATABASE
@@ -179,7 +171,7 @@ def check_update():
         RELEASE_VERSION = response.json()['tag_name']
 
         if RELEASE_VERSION > SCRIPT_VERSION:
-            print(bcolors.OKCYAN + '#'*100 + bcolors.ENDC)
+            print(bcolors.OKCYAN + '#' * 100 + bcolors.ENDC)
             print(bcolors.OKCYAN + 'Update Available!!! ' +
                   f'YouTube Viewer version {SCRIPT_VERSION} needs to update to {RELEASE_VERSION} version.' + bcolors.ENDC)
 
@@ -191,7 +183,7 @@ def check_update():
                         print(bcolors.HEADER + note + bcolors.ENDC)
             except Exception:
                 pass
-            print(bcolors.OKCYAN + '#'*100 + '\n' + bcolors.ENDC)
+            print(bcolors.OKCYAN + '#' * 100 + '\n' + bcolors.ENDC)
     except Exception:
         pass
 
@@ -219,40 +211,42 @@ def detect_file_change():
 
     if hash_queries != get_hash("search.txt"):
         hash_queries = get_hash("search.txt")
-        queries = load_search()
+        # queries = load_search()
         suggested.clear()
 
 
 def direct_or_search(position):
     keyword = None
     video_title = None
-    if position % 2:
-        try:
-            method = 1
-            url = choice(urls)
-            if 'music.youtube.com' in url:
-                youtube = 'Music'
-            else:
-                youtube = 'Video'
-        except IndexError:
-            raise Exception("Your urls.txt is empty!")
-
+    # if position % 2:
+    #     try:
+    method = 1
+    url = choice(urls)
+    if 'music.youtube.com' in url:
+        youtube = 'Music'
     else:
-        try:
-            method = 2
-            query = choice(queries)
-            keyword = query[0]
-            video_title = query[1]
-            url = "https://www.youtube.com"
-            youtube = 'Video'
-        except IndexError:
-            try:
-                youtube = 'Music'
-                url = choice(urls)
-                if 'music.youtube.com' not in url:
-                    raise Exception
-            except Exception:
-                raise Exception("Your search.txt is empty!")
+        youtube = 'Video'
+        # except IndexError:
+        #     raise Exception("Your urls.txt is empty!")
+
+    # else:
+    #     pass
+    #     try:
+    #         method = 2
+    #         query = choice(queries)
+    #         keyword = query[0]
+    #         video_title = query[1]
+    #         url = "https://www.youtube.com"
+    #         youtube = 'Video'
+    #     except IndexError:
+    #         try:
+    #             youtube = 'Music'
+    #             url = choice(urls)
+    #             if 'music.youtube.com' not in url:
+    #                 raise Exception
+    #         except Exception:
+    #             pass  # Suppress the error
+    # raise Exception("Your search.txt is empty!")
 
     return url, method, youtube, keyword, video_title
 
@@ -368,7 +362,7 @@ def spoof_timezone_geolocation(proxy_type, proxy, driver):
     try:
         proxy_dict = {
             "http": f"{proxy_type}://{proxy}",
-                    "https": f"{proxy_type}://{proxy}",
+            "https": f"{proxy_type}://{proxy}",
         }
         resp = requests.get(
             "http://ip-api.com/json", proxies=proxy_dict, timeout=30)
@@ -425,7 +419,7 @@ def control_player(driver, output, position, proxy, youtube, collect_id=True):
 
     actual_duration = strftime(
         "%Hh:%Mm:%Ss", gmtime(video_len)).lstrip("0h:0m:")
-    video_len = video_len*uniform(minimum, maximum)
+    video_len = video_len * uniform(minimum, maximum)
     duration = strftime("%Hh:%Mm:%Ss", gmtime(video_len)).lstrip("0h:0m:")
 
     if len(output) == 11:
@@ -457,7 +451,7 @@ def control_player(driver, output, position, proxy, youtube, collect_id=True):
         current_channel = 'Unknown'
 
     error = 0
-    loop = int(video_len/4)
+    loop = int(video_len / 4)
     for _ in range(loop):
         sleep(5)
         current_time = driver.execute_script(
@@ -679,14 +673,14 @@ def main_viewer(proxy_type, proxy, position):
                   f"{proxy} | {proxy_type.upper()} | Good Proxy | Opening a new driver..." + bcolors.ENDC)
 
             create_html({"#3b8eea": f"Worker {position} | ",
-                        "#23d18b": f"{proxy.split('@')[-1]} | {proxy_type.upper()} | Good Proxy | Opening a new driver..."})
+                         "#23d18b": f"{proxy.split('@')[-1]} | {proxy_type.upper()} | Good Proxy | Opening a new driver..."})
 
             while proxy in bad_proxies:
                 bad_proxies.remove(proxy)
                 sleep(1)
 
             patched_driver = os.path.join(
-                patched_drivers, f'chromedriver_{position%threads}{exe_name}')
+                patched_drivers, f'chromedriver_{position % threads}{exe_name}')
 
             try:
                 Patcher(executable_path=patched_driver).patch_exe()
@@ -696,7 +690,7 @@ def main_viewer(proxy_type, proxy, position):
             proxy_folder = os.path.join(
                 cwd, 'extension', f'proxy_auth_{position}')
 
-            factor = int(threads/(0.1*threads + 1))
+            factor = int(threads / (0.1 * threads + 1))
             sleep_time = int((str(position)[-1])) * factor
             sleep(sleep_time)
             if cancel_all:
@@ -707,8 +701,8 @@ def main_viewer(proxy_type, proxy, position):
 
             driver_dict[driver] = proxy_folder
 
-            data_dir = driver.capabilities['chrome']['userDataDir']
-            temp_folders.append(data_dir)
+            # data_dir = driver.capabilities['chrome']['userDataDir']
+            # temp_folders.append(data_dir)
 
             sleep(2)
 
@@ -720,7 +714,8 @@ def main_viewer(proxy_type, proxy, position):
                   f"{proxy} | {proxy_type.upper()} | " + bcolors.OKCYAN + f"{info} | Detected? : {isdetected}" + bcolors.ENDC)
 
             create_html({"#3b8eea": f"Worker {position} | ",
-                        "#23d18b": f"{proxy.split('@')[-1]} | {proxy_type.upper()} | ", "#29b2d3": f"{info} | Detected? : {isdetected}"})
+                         "#23d18b": f"{proxy.split('@')[-1]} | {proxy_type.upper()} | ",
+                         "#29b2d3": f"{info} | Detected? : {isdetected}"})
 
             if width == 0:
                 width = driver.execute_script('return screen.width')
@@ -769,17 +764,21 @@ def main_viewer(proxy_type, proxy, position):
             status = quit_driver(driver=driver, data_dir=data_dir)
 
         except Exception as e:
-            status = quit_driver(driver=driver, data_dir=data_dir)
+            status = quit_driver(driver=driver, data_dir=data_dir)  # TODO: check this if it is workable
 
             print(timestamp() + bcolors.FAIL +
                   f"Worker {position} | Line : {e.__traceback__.tb_lineno} | {type(e).__name__} | {e.args[0] if e.args else ''}" + bcolors.ENDC)
 
             create_html(
-                {"#f14c4c": f"Worker {position} | Line : {e.__traceback__.tb_lineno} | {type(e).__name__} | {e.args[0] if e.args else ''}"})
+                {
+                    "#f14c4c": f"Worker {position} | Line : {e.__traceback__.tb_lineno} | {type(e).__name__} | {e.args[0] if e.args else ''}"})
 
     except RequestException:
         print(timestamp() + bcolors.OKBLUE + f"Worker {position} | " +
               bcolors.FAIL + f"{proxy} | {proxy_type.upper()} | Bad proxy " + bcolors.ENDC)
+
+        with open("bad_proxies.txt", "a") as f:
+            f.write(f"{proxy}\n")
 
         create_html({"#3b8eea": f"Worker {position} | ",
                      "#f14c4c": f"{proxy.split('@')[-1]} | {proxy_type.upper()} | Bad proxy "})
@@ -792,7 +791,8 @@ def main_viewer(proxy_type, proxy, position):
               f"Worker {position} | Line : {e.__traceback__.tb_lineno} | {type(e).__name__} | {e.args[0] if e.args else ''}" + bcolors.ENDC)
 
         create_html(
-            {"#f14c4c": f"Worker {position} | Line : {e.__traceback__.tb_lineno} | {type(e).__name__} | {e.args[0] if e.args else ''}"})
+            {
+                "#f14c4c": f"Worker {position} | Line : {e.__traceback__.tb_lineno} | {type(e).__name__} | {e.args[0] if e.args else ''}"})
 
 
 def get_proxy_list():
@@ -934,11 +934,11 @@ def main():
                 for _ in range(70):
                     cpu = str(psutil.cpu_percent(0.2))
                     cpu_usage = cpu + '%' + ' ' * \
-                        (5-len(cpu)) if cpu != '0.0' else cpu_usage
+                                (5 - len(cpu)) if cpu != '0.0' else cpu_usage
 
                 if loop % 40 == 0:
                     print(tabulate(video_statistics.items(),
-                          headers=headers_2, showindex=True, tablefmt="pretty"))
+                                   headers=headers_2, showindex=True, tablefmt="pretty"))
 
                 if category == 'r' and proxy_api:
                     proxies_from_api = scrape_api(link=filename)
@@ -964,7 +964,7 @@ def main():
 
                 elif refresh != 0 and category != 'r':
 
-                    if (time() - start_time) > refresh*60:
+                    if (time() - start_time) > refresh * 60:
                         start_time = time()
 
                         proxy_list_new = get_proxy_list()
@@ -1005,10 +1005,11 @@ if __name__ == '__main__':
 
     if osname == 'win':
         import wmi
+
         constructor = wmi.WMI()
 
     urls = load_url()
-    queries = load_search()
+    # queries = load_search()
 
     if os.path.isfile(config_path):
         with open(config_path, 'r', encoding='utf-8-sig') as openfile:
@@ -1016,12 +1017,14 @@ if __name__ == '__main__':
 
         if len(config) == 11:
             print(json.dumps(config, indent=4))
-            print(bcolors.OKCYAN + 'Config file exists! Program will start automatically after 20 seconds...' + bcolors.ENDC)
-            print(bcolors.FAIL + 'If you want to create a new config file PRESS CTRL+C within 20 seconds!' + bcolors.ENDC)
-            start = time() + 20
+            print(
+                bcolors.OKCYAN + 'Config file exists! Program will start automatically after 20 seconds...' + bcolors.ENDC)
+            print(
+                bcolors.FAIL + 'If you want to create a new config file PRESS CTRL+C within 20 seconds!' + bcolors.ENDC)
+            start = time() + 5  # TODO: default is 20 secs
             try:
                 i = 0
-                while i < 96:
+                while i < 24:  # TODO: the number was 96
                     print(bcolors.OKBLUE + f"{start - time():.0f} seconds remaining " +
                           animation[i % len(animation)] + bcolors.ENDC, end="\r")
                     i += 1
@@ -1030,7 +1033,8 @@ if __name__ == '__main__':
             except KeyboardInterrupt:
                 create_config(config_path=config_path)
         else:
-            print(bcolors.FAIL + 'Previous config file is not compatible with the latest script! Create a new one...' + bcolors.ENDC)
+            print(
+                bcolors.FAIL + 'Previous config file is not compatible with the latest script! Create a new one...' + bcolors.ENDC)
             create_config(config_path=config_path)
     else:
         create_config(config_path=config_path)
