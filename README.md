@@ -1,15 +1,3 @@
-<p align="center">
-<img alt="ViewCount" src="https://views.whatilearened.today/views/github/MShawon/YouTube-Viewer.svg">
-<img alt="OS" src="https://img.shields.io/badge/OS-Windows%20/%20Linux / Mac-success">
-<a href="https://github.com/MShawon/YouTube-Viewer/releases"><img alt="Downloads" src="https://img.shields.io/github/downloads/MShawon/YouTube-Viewer/total?label=Downloads&color=success"></a>
-<a href="https://github.com/MShawon/YouTube-Viewer/issues?q=is%3Aissue+is%3Aclosed"><img alt="Closed issues" src="https://img.shields.io/github/issues-closed/MShawon/YouTube-Viewer.svg"></a>
-<a href="https://github.com/MShawon/YouTube-Viewer/issues?q=is%3Aissue+is%3Aopen"><img alt="Open issues" src="https://img.shields.io/github/issues/MShawon/YouTube-Viewer"></a>
-</p>
-<p align="center">
-  <a href="https://github.com/MShawon/YouTube-Viewer/releases/latest"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/MShawon/YouTube-Viewer?color=success"></a>
-  <a href="https://github.com/MShawon/YouTube-Viewer/releases/latest"><img alt="GitHub Release Date" src="https://img.shields.io/github/release-date/MShawon/YouTube-Viewer?color=success"></a>
-</p>
-
     Yb  dP  dP"Yb  88   88 888888 88   88 88""Yb 888888
      YbdP  dP   Yb 88   88   88   88   88 88__dP 88__   
       8P   Yb   dP Y8   8P   88   Y8   8P 88""Yb 88""   
@@ -19,6 +7,8 @@
                           Yb  dP  88 88__    Yb  db  dP  88__   88__dP 
                            YbdP   88 88""     YbdPYbdP   88""   88"Yb  
                             YP    88 888888    YP  YP    888888 88  Yb
+
+> This code is based on [MShawon Youtube Viewer](https://github.com/MShawon/YouTube-Viewer) which is not maintained by auther and I am just try to fix and make it run. 
 
 # YouTube Viewer
 Simple program to increase YouTube views written in Python. Works with live stream too.
@@ -30,12 +20,6 @@ Simple program to increase YouTube views written in Python. Works with live stre
 
 **Cons:** There will be some view drop always. 
 
-# Support
-   Consider a donation to keep this project alive and for the countless hours of works and testing :)
-   
-  **PayPal :** https://paypal.me/mshawon1
-  
-  **Bitcoin :** `1Jh8KZ6khuHayNDeVV9tEzYSq9FPExKCAH`
 
 # Topics
 [Requirements](https://github.com/MShawon/YouTube-Viewer#requirements)  
@@ -114,8 +98,6 @@ Simple program to increase YouTube views written in Python. Works with live stre
 
 
 # Proxies
- *[IPRoyal](https://iproyal.com?r=18862) offers datacenter and residential proxies. The Royal Residential proxies have a large pool with addresses in over 195 countries all over the world, so they can generate a massive number of views. IPRoyal agreed to provide an additional discount of 5% which adds up to current bulk discounts! To get this incredible 5% discount, with bulk discounts for Royal Residential proxies, use the discount code: `youtubers5`*
-
 
 * ## Free Proxy
    Try not to use free proxies. But if you have a paid subscription and you want to use authenticated IP feature, then you can use the free proxy category. Provide your text file path (where you saved the proxies) when the script asks for a proxy file name or a proxy API.
@@ -178,7 +160,7 @@ Simple program to increase YouTube views written in Python. Works with live stre
   
   Open command prompt and type
   ```
-  git clone https://github.com/MShawon/YouTube-Viewer.git --depth 10
+  git clone https://github.com/Hassibayub/Youtube-Viewer-Bot.git --depth 10
   ```
   ```
   cd YouTube-Viewer
@@ -187,7 +169,7 @@ Simple program to increase YouTube views written in Python. Works with live stre
   python -m pip install --upgrade pip wheel
   ```
   ```
-  pip install "setuptools<59"
+  pip install "setuptools"
   ```
   ```
   pip install -r requirements.txt
@@ -217,7 +199,7 @@ Simple program to increase YouTube views written in Python. Works with live stre
   
   Open your favourite terminal and run
    ```
-  git clone https://github.com/MShawon/YouTube-Viewer.git --depth 10
+  git clone https://github.com/Hassibayub/Youtube-Viewer-Bot.git --depth 10
   ```
   ```
   cd YouTube-Viewer
@@ -226,7 +208,7 @@ Simple program to increase YouTube views written in Python. Works with live stre
   python3 -m pip install --upgrade pip wheel
   ```
   ```
-  pip3 install "setuptools<59"
+  pip3 install setuptools
   ```
   ```
   pip3 install -r requirements.txt
